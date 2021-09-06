@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography'
 import FolderIcon from '@material-ui/icons/Folder';
@@ -28,25 +28,43 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-
 export default function Todos({todos, setTodos}) {
-
+  
+ 
     
       const classes = useStyles();
       const [dense, setDense] = React.useState(false);
       const [secondary, setSecondary] = React.useState(false);
 
+      const del = ({ title }) => {
+        setTodos(todos.filter((todo)=>todo.title !== title))
+      }
 
     return (
         <div>
             
                 {todos.map((todo)=>{
-                    <li>
-                        {console.log(todo.title)}
-                        <input type="text" value={todo.title} onChange= {(e)=>e.preventDefault()}/> 
-                        {todo.title}
+                    return  <div className={classes.demo}>
+                    <List dense={dense}>
+                      {console.log(todo)}
+                        <ListItem>
+                          
+                          <ListItemText
+                            primary={todo.title}
+                            secondary={secondary ? 'Secondary text' : null}
+                          />
+                          <ListItemSecondaryAction>
+                            <IconButton edge="end" aria-label="delete">
+                              <DeleteIcon  onClick={()=> del( todo )}/>
+                            </IconButton>
+                          </ListItemSecondaryAction>
+                        </ListItem>
+                      
+                    </List>
+                  </div>
                         
-                    </li>
+                        
+                    
                 })}
                               
         </div>
