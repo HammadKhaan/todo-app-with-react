@@ -23,7 +23,11 @@ export default function Main() {
 
   return (
     <Grid container spacing={1} className={classes.root}>
-      <Card className={classes.root} variant="outlined">
+      <Card
+        className={classes.root}
+        variant="outlined"
+        style={{ border: "2px solid black", boxShadow: "10px 10px 5px grey" }}
+      >
         <CardContent>
           <Typography
             className={classes.title}
