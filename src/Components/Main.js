@@ -26,7 +26,7 @@ export default function Main() {
       <Card
         className={classes.root}
         variant="outlined"
-        style={{ border: "2px solid black", boxShadow: "10px 10px 5px grey" }}
+        style={{ border: "2px solid black", boxShadow: "10px 10px 3px rgba(200,200,200,0.5)" }}
       >
         <CardContent>
           <Typography
