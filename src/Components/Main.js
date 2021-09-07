@@ -8,6 +8,9 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid'
 import Todos from './Todos'
 import Input from './Input'
+import { useSelector, useDispatch } from 'react-redux';
+import { task } from '../Redux/reduxInput';
+
 
 const useStyles = makeStyles({
     root: {
@@ -29,7 +32,7 @@ const useStyles = makeStyles({
 export default function Main() {
     const classes = useStyles();
 
-    const [input, setInput]= useState("");
+    //const {in} = useSelector((state) => state.task1)
     const [todos, setTodos]= useState([]);
 
     
@@ -43,12 +46,7 @@ export default function Main() {
                         TODO APP
                     </Typography>
                     <div>
-                        <Input 
-                            input={input}
-                            setInput={setInput}
-                            todos={todos}
-                            setTodos={setTodos}
-                        />
+                        <Input/>
                     </div>
                     <div>
                         <Todos todos={todos} setTodos={setTodos}/>

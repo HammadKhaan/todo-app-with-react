@@ -1,17 +1,14 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
-
-
-
-
+import { useSelector, useDispatch } from 'react-redux';
+import { add } from '../Redux/reduxInput';
 
 const useStyles = makeStyles({
     root: {
         //minWidth: 275,
         //textAlign: "center",
-        
+
     },
     bullet: {
         display: 'inline-block',
@@ -27,27 +24,35 @@ const useStyles = makeStyles({
     },
 });
 
-const Input = ({ input, setInput, todos, setTodos }) => {
+const Input = () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const localState = useSelector(state=>state)
+    console.log(`localState`, localState)
+    const [value,setValue] = useState("")
 
-    const inputChange = (e) => {
-        setInput(e.target.value);
-    } 
-    const add = (e) => {
-        e.preventDefault();
-        setTodos([...todos, {title:input}])
-       // console.log(input);
-        setInput("");
+    const addTodo=()=>{
+        dispatch(add({title:value}))
     }
-    
     return (
         <div>
             <form className={classes.root} noValidate autoComplete="off">
-                        <TextField id="outlined-basic" label="ENTER YOUR TASK" variant="outlined" value={input} required onChange={inputChange}/>
-                        <Button variant="contained" color="primary" onClick = {add} style={{marginTop: "8px",marginLeft: "20px"}}>
-                            ADD TASK
-                        </Button>
-                    </form>
+                <TextField 
+                id="outlined-basic" 
+                label="ENTER YOUR TASK" 
+                variant="outlined" 
+                value={value} 
+                required onChange={(e) =>setValue(e.target.value) } 
+                />
+                
+                <Button 
+                variant="contained" 
+                color="primary" 
+                  onClick={addTodo} 
+                style={{ marginTop: "8px", marginLeft: "20px" }}>
+                    ADD TASK
+                </Button>
+            </form>
         </div>
     )
 }
