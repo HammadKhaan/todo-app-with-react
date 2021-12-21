@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Todos from "./Todos";
 import Input from "./Input";
+//import firebaseDb from "../Firebase/firebase";
 
 const useStyles = makeStyles({
   root: {
@@ -20,6 +21,7 @@ const useStyles = makeStyles({
 export default function Main() {
   const classes = useStyles();
   const [todos, setTodos] = useState([]);
+
 
   return (
     <Grid container spacing={1} className={classes.root}>
@@ -43,6 +45,7 @@ export default function Main() {
           </div>
           <div>
             <Todos todos={todos} setTodos={setTodos} />
+           
           </div>
         </CardContent>
       </Card>
